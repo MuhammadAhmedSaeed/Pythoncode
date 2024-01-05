@@ -56,7 +56,7 @@ def main(position, location):
             break  # Break the loop if there is no next page link
 
     # Save job data to a CSV file
-    with open('C://Users//ms02049//Downloads//JobData//results.csv', 'w', newline='', encoding='utf-8') as f:
+    with open('results.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         # Write header and records to the CSV file
         writer.writerow(['job_title', 'company_name', 'salary', 'location', 'description'])
