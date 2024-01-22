@@ -1,0 +1,41 @@
+#This Python script uses Pytube library to download youtube videos, either as a single video or a playlist depending on the need.
+# Import necessary modules from the Pytube library
+from pytube import YouTube, Playlist
+
+# Function for downloading a single video
+def download_single_video(link):
+    try:
+        # Create a YouTube object using the provided link
+        youtube_object = YouTube(link, use_oauth=True, allow_oauth_cache=True)
+        
+        # Get the highest resolution stream available
+        video_stream = youtube_object.streams.get_highest_resolution()
+        
+        # Download the video to the specified directory
+        video_stream.download("...//Youtube_Downloads")
+        
+        # Print success message
+        print("Download completed successfully")
+    except Exception as e:
+        # Print an error message if an exception occurs
+        print(f"An error has occurred: {e}")
+
+# Prompt the user for a YouTube link
+link = input("Please input YouTube link: ")
+
+# Call the function to download the single video
+download_single_video(link)
+
+
+# For downloading an entire playlist
+playlist_link = "https://www.youtube.com/..."  # Replace with the actual playlist link
+
+# Create a Playlist object using the provided link
+playlist = Playlist(playlist_link)
+
+# Display the playlist title
+print(f'Downloading Playlist: {playlist.title}')
+
+# Loop through each video in the playlist and download the first stream
+for video in playlist.videos:
+    video.streams.first().download("...//Youtube_Downloads")
